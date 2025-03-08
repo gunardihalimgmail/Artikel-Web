@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
+import {v7 as uuidv7} from 'uuid';
 import './article_dashboard.scss'
 import { Neutron } from '../../../assets'
 import storeMenu from '../../../stores'
 import { format } from 'date-fns'
 import idLocale from 'date-fns/locale/id'
 import { useNavigate } from 'react-router'
+import { PPE_getApiSync } from '../../../services/functions'
 
 const ArticleDashboard = () => {
 
@@ -16,7 +18,140 @@ const ArticleDashboard = () => {
   const [dataTopic, setDataTopic] = useState<{[key:string]:any[]}>({}); // {'Ekonomi':[...], 'Olahraga':[...]}
   const [headline, setHeadline] = useState<any>({});
   
-  useEffect(()=>{
+
+  const getDataList = () => {
+    
+    const completeGenerateData = (rowlist_temp:any[]) => {
+        // setTimeout(()=>{
+        //   setShowProgressBars(false);
+        //   setShowSkeleton(false);
+        // }, 77)
+        
+        if (localStorage.getItem('data') == null)
+        {
+          localStorage.setItem('data', JSON.stringify(rowlist_temp))
+          fetchingData();
+        }
+
+        // setRowList([...rowlist_temp]);
+        // setStatusDone(true);
+    }
+
+
+    // setStatusDone(false);
+    // setShowForm(false);
+
+    // setShowProgressBars(true);
+    // setShowSkeleton(true);
+
+
+    let count_finish:number = 0;
+    let rowlist_temp:any[] = [];
+
+    let dataStorage = localStorage.getItem("data");
+
+    
+    if (dataStorage === null) 
+    {
+          // Ekonomi
+          // * Jika data kosong, maka isi dengan data default
+          PPE_getApiSync(`https://api-berita-indonesia.vercel.app/antara/ekonomi`
+                ,null
+                , 'application/json'
+                , 'GET'
+                , null)
+          .then((response)=>{
+    
+              let response_success = response?.['success']; // error dari internal
+              let response_message = response?.['message'] // error dari api
+    
+              if (typeof response_success != 'undefined' && response_success === false){
+                  count_finish++;
+              }
+              else {
+                  const data_posts = response?.['data']?.['posts'];
+
+                  if (response_success === true && typeof data_posts !== 'undefined' &&
+                      Array.isArray(data_posts))
+                  {
+                      let final_posts_temp:any[] = data_posts.map((obj, idx)=>{
+                        return {
+                          uuid: uuidv7(),
+                          title: obj?.['title'],
+                          description: obj?.['description'],
+                          tanggal: format(new Date(obj?.['pubDate']),'yyyy-MM-dd'),
+                          url_photo: obj?.['thumbnail'],
+                          kategori: 'Ekonomi',
+                          content: obj?.['description'],
+                          tags: ['Ekonomi']
+                        }
+                      })
+                      rowlist_temp = [...rowlist_temp, ...final_posts_temp];
+                      count_finish++;
+                    }
+              }
+                  
+              if (count_finish === 2){
+                  completeGenerateData(rowlist_temp);
+              }
+          });
+          
+          // Olahraga
+          PPE_getApiSync(`https://api-berita-indonesia.vercel.app/antara/olahraga`
+                ,null
+                , 'application/json'
+                , 'GET'
+                , null)
+          .then((response)=>{
+    
+              let response_success = response?.['success']; // error dari internal
+              let response_message = response?.['message'] // error dari api
+    
+              if (typeof response_success != 'undefined' && response_success === false){
+                  count_finish++;
+              }
+              else {
+                  const data_posts = response?.['data']?.['posts'];
+
+                  if (response_success === true && typeof data_posts !== 'undefined' &&
+                      Array.isArray(data_posts))
+                  {
+                      let final_posts_temp:any[] = data_posts.map((obj, idx)=>{
+                        return {
+                          uuid: uuidv7(),
+                          title: obj?.['title'],
+                          description: obj?.['description'],
+                          tanggal: format(new Date(obj?.['pubDate']),'yyyy-MM-dd'),
+                          url_photo: obj?.['thumbnail'],
+                          kategori: 'Olahraga',
+                          content: obj?.['description'],
+                          tags: ['Olahraga']
+                        }
+                      })
+                      rowlist_temp = [...rowlist_temp, ...final_posts_temp];
+                      count_finish++;
+                    }
+              }
+                  
+              if (count_finish === 2){
+                  completeGenerateData(rowlist_temp);
+              }
+          });
+      }
+      else if (typeof dataStorage === 'string')
+      {
+        fetchingData();
+      }
+
+        // setTimeout(()=>{
+        //   setShowProgressBars(false);
+        //   setShowSkeleton(false);
+        // },500)
+      // }
+
+  }
+
+  const fetchingData = () => {
     const getData = localStorage.getItem('data');
 
     
@@ -136,6 +271,11 @@ const ArticleDashboard = () => {
     else {
       setDataArticleTop([]);
     }
+  }
+  
+  useEffect(()=>{
+    // fetchingData();
+    getDataList();
   },[])
 
   useEffect(()=>{
