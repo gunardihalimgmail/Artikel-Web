@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Artikel-Web/static/css/main.fa31d41e.css",
-    "main.js": "/Artikel-Web/static/js/main.f41e8c60.js",
+    "main.js": "/Artikel-Web/static/js/main.4c7322bb.js",
     "static/js/830.351ad5ee.chunk.js": "/Artikel-Web/static/js/830.351ad5ee.chunk.js",
     "static/js/787.28cb0dcd.chunk.js": "/Artikel-Web/static/js/787.28cb0dcd.chunk.js",
     "static/media/people-generating-images-using-artificial-intelligence-laptop.jpg": "/Artikel-Web/static/media/people-generating-images-using-artificial-intelligence-laptop.55a94d0a8db2bdf64913.jpg",
@@ -82,12 +82,12 @@
     "static/media/circle.953c9ca0.svg": "/Artikel-Web/static/media/circle.953c9ca0.4b82948053b0ffef558c4bd9f3f88948.svg",
     "index.html": "/Artikel-Web/index.html",
     "main.fa31d41e.css.map": "/Artikel-Web/static/css/main.fa31d41e.css.map",
-    "main.f41e8c60.js.map": "/Artikel-Web/static/js/main.f41e8c60.js.map",
+    "main.4c7322bb.js.map": "/Artikel-Web/static/js/main.4c7322bb.js.map",
     "830.351ad5ee.chunk.js.map": "/Artikel-Web/static/js/830.351ad5ee.chunk.js.map",
     "787.28cb0dcd.chunk.js.map": "/Artikel-Web/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.fa31d41e.css",
-    "static/js/main.f41e8c60.js"
+    "static/js/main.4c7322bb.js"
   ]
 }
