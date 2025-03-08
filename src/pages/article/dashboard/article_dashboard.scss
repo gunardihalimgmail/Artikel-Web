@@ -1,0 +1,232 @@
+.ad-container {
+  width: 1340px;
+}
+
+@media (max-width:1380px){
+  .ad-container {
+    width: 100%;
+  } 
+}
+@media (max-width:1537px){
+  .ad-container {
+    width: 100%;
+  } 
+}
+
+.ad-nav {
+  // background: linear-gradient(100deg,#007bbd 50%,#3ea6dd 100%);
+  background: linear-gradient(100deg,#0480c3 50%,#3ea6dd 100%);
+  // background: linear-gradient(100deg,#00a4bdd7 50%,#3ea6dd 100%);
+  border-radius: 4px;
+  height:42.2px;
+  color:white;
+  display: flex;
+  align-items: center;
+  padding-inline: 20px;
+}
+
+.ad-title {
+  color:white;
+  letter-spacing: 1px;
+  font-weight: 600;
+  font-size: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-style: normal;
+  margin-left: 15px;
+
+}
+
+.ad-item-top {
+  width:100%;
+  // display: flex;
+  display: block;
+  // gap:4px;
+  // column-gap: 10px;
+  overflow-x: auto;
+  white-space: nowrap;
+  height: 300px;
+}
+
+.ad-item-top-container {
+  display: inline-flex;
+  flex-direction: column;
+  border-radius: 5px;
+  margin-right: 20px;
+  // border: 1px solid red;
+  width:250px;
+  height:290px;
+  white-space: normal;
+  word-break: break-word;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  .ad-title-text {
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    display: -webkit-box;
+    box-orient: vertical;
+    -moz-box-orient: vertical;
+    -webkit-box-orient: vertical;
+    line-clamp: 3;
+    -webkit-line-clamp: 3;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding-block: 15px;
+
+
+    // height: 100px;
+    padding-inline: 1px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+
+    h6 {
+      padding: 0;
+      margin:0;
+
+      &:hover {
+        color:darkgreen;
+      }
+    }
+  }
+
+  .ad-title-img {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 5px;
+    
+    img {
+      border-radius: 5px;
+      cursor: pointer;
+      object-fit:cover;
+      object-position:center;
+      width:100%;
+      height:100%;
+      transition: all 0.5s ease;
+      
+      &:hover {
+        transform: scale(1.5);
+      }
+    }
+  }
+  
+
+}
+
+.ad-headline {
+    // border:1px solid red;
+    height: 450px;
+    border-radius: 0 0 17px 17px;
+    overflow: hidden;
+
+    .ad-headline-cover-image {
+      height:450px;
+      overflow: hidden;
+      position: relative;
+      
+      img {
+        height:100%;
+        width:100%;
+        object-fit: cover;
+        object-position: center;
+        transition: all 0.5s ease;
+        
+        &:hover {
+          transform: scale(1.2);
+        }
+      }
+
+      .ad-headline-subtitle {
+        position: absolute; 
+        bottom:20px;
+        padding-inline: 15px;
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        
+        h2 {
+            color: white;
+            font-size: 24px;
+            
+
+            &:hover {
+              cursor: pointer;
+              color: gold;
+            }
+        }
+
+        .ad-headline-time {
+          color:white;
+          font-weight: 500;
+
+        }
+      }
+    }
+}
+
+.line-hr-artikel-pop {
+  display: none;
+}
+@media (max-width: 767px) {
+  .line-hr-artikel-pop {
+    display: block;
+  } 
+}
+
+.ad-populer-list {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+
+  .ad-title {
+    color:black;
+    font-size: 16px;
+    
+    &:hover{
+      color:darkgreen;
+    }
+  }
+}
+
+.ad-topic-list {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+
+  .ad-title {
+    color:black;
+    font-size: 16px;
+    
+    &:hover{
+      color:darkgreen;
+    }
+  }
+
+  .ad-content {
+    display: -webkit-box;
+    box-orient: vertical;
+    -webkit-box-orient: vertical;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    color:black;
+    font-size: 14px;
+  }
+
+  .ad-topic-tanggal {
+    color:grey;
+  }
+  .ad-topic-kategori {
+    color:darkgreen;
+    font-weight: 600;
+  }
+}
